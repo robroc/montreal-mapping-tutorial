@@ -11,7 +11,7 @@ Specifically, we'll take a spreadsheet with job numbers for different industries
 
 ### Excel formulas used in this tutorial:
 
-Arguments in [brackets] are optional.
+*Arguments in [brackets] are optional.*
 
 **=MAX(number, [number…])**
 
@@ -78,6 +78,8 @@ MATCH(**MAX(B2:B18)**,B2:B18,0)   -  This returns the row number of the max valu
 
 **INDEX($A$2:B18,** MATCH(__MAX(B2:B18)__, B2:B18,0)**,1)**  - This returns the value in the first column that's on the same row as the max value in column B. That's the industry that has the highest number of jobs.
 Click on the little black box on the bottom right and drag it across your 32 columns. It will copy the formula across.
+
+The dollar signs ($) in $A$2 makes that cell reference fixed. That is, when you copy the formula over to other cells, that part of the formula will stay on A2. Which is what you want in this case. That column has the values you need.
 
 ## 5. Clean your data
 
