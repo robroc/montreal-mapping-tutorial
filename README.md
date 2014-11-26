@@ -13,26 +13,26 @@ Specifically, we’ll take a spreadsheet with job numbers for different industri
 
 Arguments in [brackets] are optional.
 
-*=MAX(number, [number…])*
+**=MAX(number, [number…])**
 Find the highest number in a sequence or a cell range
 
-*=MATCH(lookup_value, lookup_array, [match_type])*
+**=MATCH(lookup_value, lookup_array, [match_type])**
 Returns the row number of a value in a cell range. 
 Match type: 0 for exact match, 1 for close match.
 
-*=INDEX(array, row_number, [column_number])*
+**=INDEX(array, row_number, [column_number])**
 Given a cell range, it returns the value in the same row of a column you specify.
 
-*=MID(text, start_num, num_chars)*
+**=MID(text, start_num, num_chars)**
 Copy a text starting at start_num up to num_chars.
 
 If you want to start at the beginning best to use the LEFT function.
-*=FIND(find_text, within_text, [start_num])*
+**=FIND(find_text, within_text, [start_num])**
 
 Returns the position of a text you specify within a larger text. For example:
 	=FIND(“ab”, “Alabama”)  returns 3
 	
-*=LEN(text)*
+**=LEN(text)**
 Returns the number of characters of a text or cell.
 
 
@@ -62,15 +62,15 @@ Copy your selected data and paste it into a new worksheet.
 
 Name a new row on Column A “Highest industry”. In Column B, write in this formula:
 
-*=INDEX($A$2:B18,MATCH(MAX(B2:B18),B2:B18,0),1)*
+**=INDEX($A$2:B18,MATCH(MAX(B2:B18),B2:B18,0),1)**
 
 That’s a big formula, so let’s break it down, from innermost to outermost:
 
-*MAX(B2:B18)*  - this will find the highest number in column B.
+**MAX(B2:B18)**  - this will find the highest number in column B.
 
-MATCH(*MAX(B2:B18)*,B2:B18,0)   -  This returns the row number of the max value of Column B.
+MATCH(**MAX(B2:B18)**,B2:B18,0)   -  This returns the row number of the max value of Column B.
 
-*INDEX($A$2:B18,*MATCH(*MAX(B2:B18)*,B2:B18,0)*,1)*  - This returns the value in the first column that’s on the same row as the max value in column B. That’s the industry that has the highest number of jobs.
+**INDEX($A$2:B18,**MATCH(**MAX(B2:B18)**,B2:B18,0)**,1)**  - This returns the value in the first column that’s on the same row as the max value in column B. That’s the industry that has the highest number of jobs.
 Click on the little black box on the bottom right and drag it across your 32 columns. It will copy the formula across.
 
 ## 5. Clean your data
@@ -80,7 +80,7 @@ Again, copy your data to a new sheet.
 Let’s get rid of those number codes. They’re useless to us now. We want to just keep all the text after the space following the numbers.
 Right click on the column B label (the letter B) and choose ‘Insert’. It will add a blank column. Write in this formula on B2:
 
-*=MID(A2, FIND(“ “,A2)+1, LEN(A2))*
+**=MID(A2, FIND(“ “,A2)+1, LEN(A2))**
 
 Again, let’s break this down:
 
