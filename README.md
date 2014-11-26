@@ -6,7 +6,7 @@ Specifically, we'll take a spreadsheet with job numbers for different industries
 ### Requirements
 * Microsoft Excel (or LibreOffice or Google Spreadsheet)
 * QGIS
-* The Excel file in this repo
+* The Excel file in this repo [(Source)](http://ville.montreal.qc.ca/portal/page?_pageid=6897,102849654&_dad=portal&_schema=PORTAL)
 * The shapefile of Montreal's borough and demerged suburbs in this repo (boroughs_and_munis.zip)
 
 ### Excel formulas used in this tutorial:
@@ -35,7 +35,7 @@ If you want to start at the beginning best to use the LEFT function.
 
 Returns the position of a text you specify within a larger text. For example:
 
-	__=FIND("ab", "Alabama")__  returns 3
+    =FIND("ab", "Alabama") returns 3
 	
 **=LEN(text)**
 
