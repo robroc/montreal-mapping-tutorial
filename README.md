@@ -14,25 +14,31 @@ Specifically, we’ll take a spreadsheet with job numbers for different industri
 Arguments in [brackets] are optional.
 
 **=MAX(number, [number…])**
+
 Find the highest number in a sequence or a cell range
 
 **=MATCH(lookup_value, lookup_array, [match_type])**
+
 Returns the row number of a value in a cell range. 
 Match type: 0 for exact match, 1 for close match.
 
 **=INDEX(array, row_number, [column_number])**
+
 Given a cell range, it returns the value in the same row of a column you specify.
 
 **=MID(text, start_num, num_chars)**
-Copy a text starting at start_num up to num_chars.
 
+Copy a text starting at start_num up to num_chars.
 If you want to start at the beginning best to use the LEFT function.
+
 **=FIND(find_text, within_text, [start_num])**
 
 Returns the position of a text you specify within a larger text. For example:
-	=FIND(“ab”, “Alabama”)  returns 3
+
+	__=FIND(“ab”, “Alabama”)__  returns 3
 	
 **=LEN(text)**
+
 Returns the number of characters of a text or cell.
 
 
@@ -40,7 +46,7 @@ Returns the number of characters of a text or cell.
 
 Look at the top row. Look at the first column. What is this data bout?
 
-What do the numbers represent? What about those number codes before each industry name in column A? Do your research first. Google is your friend.
+What do the numbers represent? What about those number codes before each industry name in column A? Do your research first. Google is your friend. [Here's a hint.](http://www.statcan.gc.ca/subjects-sujets/standard-norme/naics-scian/2007/list-liste-eng.htm)
 
 ## 2.  Cover your ass
 
@@ -70,7 +76,7 @@ That’s a big formula, so let’s break it down, from innermost to outermost:
 
 MATCH(**MAX(B2:B18)**,B2:B18,0)   -  This returns the row number of the max value of Column B.
 
-**INDEX($A$2:B18,**MATCH(**MAX(B2:B18)**,B2:B18,0)**,1)**  - This returns the value in the first column that’s on the same row as the max value in column B. That’s the industry that has the highest number of jobs.
+**INDEX($A$2:B18,** MATCH(__MAX(B2:B18)__, B2:B18,0)**,1)**  - This returns the value in the first column that’s on the same row as the max value in column B. That’s the industry that has the highest number of jobs.
 Click on the little black box on the bottom right and drag it across your 32 columns. It will copy the formula across.
 
 ## 5. Clean your data
