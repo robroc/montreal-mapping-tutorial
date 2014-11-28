@@ -5,7 +5,7 @@ Specifically, we'll take a spreadsheet with job numbers for different industries
 
 ### Requirements
 * Microsoft Excel (or LibreOffice or Google Spreadsheet)
-* QGIS
+* QGIS (or ArcGIS if you have a licence)
 * The Excel file in this repo [(Source)](http://ville.montreal.qc.ca/portal/page?_pageid=6897,102849654&_dad=portal&_schema=PORTAL)
 * The shapefile of Montreal's borough and demerged suburbs in this repo (boroughs_and_munis.zip)
 
@@ -58,7 +58,11 @@ We just want the numbers for the top-most level of industry classification, thos
 
 Select the top left cell (A1). Give it a label, like "Industry". On your toolbar, click the little funnel button. That's your filter. There might be a sub-menu to get to it. It will add a little drop-down menu on your column headers.
 
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/filter.jpg)
+
 Click `Select all` or `Clear` to unselect everything. Now go down the list and check off the values you want. That is, all values that start with two numbers.
+
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/filter2.jpg)
 
 You should have 21 rows of data after filtering.
 
@@ -80,6 +84,9 @@ MATCH(**MAX(B2:B21)**,B2:B21,0)   -  This returns the row number of the max valu
 Click on the little black box on the bottom right and drag it across your 32 columns. It will copy the formula across.
 
 The dollar signs ($) in $A$2 makes that cell reference fixed. That is, when you copy the formula over to other cells, that part of the formula will stay on A2. Which is what you want in this case. That column has the values you need.
+
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/formulas.jpg)
+**If you want to go further, here are some other formulas.**
 
 ## 5. Clean your data
 
@@ -106,6 +113,8 @@ Now let's get rid of the (ville) and (arrondissement) qualifiers next to each re
 
 Choose the `Find and replace` option. In the `Find` box, type in ` (*)`. This means: find a space, an open parenthesis, anything that follows it until a close parenthesis. In Google Spreadsheet, you might need to use this regular expression: ` \(.+\)` (if you don't know what regular exressions are, Google it. It's a useful thing to know for data cleanup).
 
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/replace.jpg)
+
 In the `Replace` box, put nothing. Choose `Replace all`. All clean.
 
 ## 6. Prepare the data for mapping
@@ -116,13 +125,19 @@ Delete all the rows that aren't your max row and your largest industry row. We n
 
 We need to reshape this data from 3 rows x 32 columns to 32 rows x 3 columns. Select your three rows and copy them. On a blank cell (say, A5), hit `Paste special`, then select `Transpose`. Your data is reshaped to “long” form. Delete the “wide” version in your top three rows and any blank rows. We're done.
 
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/transpose.jpg)
+
 If you want, you can translate the industry names to English.
 
 ## 7. Map that data
 
 Open QGIS. Click the `Add Vector Layer` button. The Source Type should be File, and the Encoding should be latin1. Click the `Browse` button and find your Montreal shapefile. Make sure you unzipped it first! Select the file with the .shp extension. Click `Open`.
 
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/qgis-open.JPG)
+
 Hello, Montreal island. You'll see that the shapefile has been added to your layers panel on the left. Right click on it and choose `Open Attribute Table`. That's the data behind that shapefile. We only have one column, with the name of each borough and demerged suburb. We'll use that to join our Excel data to it.
+
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/qgis-table.JPG)
 
 Make sure the names on the Excel file and the shapefile are spelled EXACTLY the same. The tiniest difference will make the join fail for that area. Once you're satisfied, save your final Excel sheet as a CSV (comma-separated values) file.
 
@@ -130,11 +145,16 @@ Click the `Add Vector Layer` button again. Add the CSV you just created. It will
 
 Double click the Montreal layer in the layer list. This is the main control panel for that layer. Choose `Joins` on the left menu. Click the green + button. Your join layer is the CSV file you added. The join field is the column in your CSV with the names of your areas. And the target field is the column on the shapefile with the same area names. Click OK. Then OK again.
 
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/qgis-join.JPG)
+
 Nothing happened right? Wrong. Look at the attribute table of the Montreal shapefile again. It has the data you added! If there are any rows without data, it means the area names between the files didn't match. Go back and fix it in Excel, and add the corrected CSV file again.
 
 Now you can style the map.
 
 Double-click the Montreal layer again. Choose the `Style` menu. Right now all areas are styled the same as a single symbol. In the top menu, choose `Categorized`. Now you need a column to categorize it by. Choose your largest industry column. Click on `Classify` to add colours to values in the column. Click OK.
 
+![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/qgis-style.JPG)
+
 Doesn't that look great? Notice there's also a colour legend under the Montreal layer. You can customize the colours for each value by double-clicking on it in the Style menu.
 
+You can also add labels to each of the map's features in the `Labels` panel. Play with the options. There are tons of free QGIS tutorials out there.
