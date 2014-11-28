@@ -109,6 +109,8 @@ FIND(" ",A2)  - this will return the position of the first space in A2. If the t
 Copy that formula down the column (remember the little black box on the bottom right?). You should have the values in Column A without the number codes. Copy that column you just populated. Select A1, right-click and choose `Paste Special` and `Values only`. This ensures you only paste the values of the cells and not the formulas you wrote.
 Notice how the industry names on the bottom row also changed to the cleaner version.
 
+You can delete column B. It served its temporary purpose.
+
 Now let's get rid of the (ville) and (arrondissement) qualifiers next to each region name in the top row. Select all of Row 1 and bring up the `Find` dialog. It's in the Edit menu or Ctrl-F (Command-F on Mac).
 
 Choose the `Find and replace` option. In the `Find` box, type in:  &nbsp;` (*)` (Make sure you add a space before). This means: find a space, an open parenthesis, anything that follows it until a close parenthesis. In Google Spreadsheet, you might need to use this regular expression:  &nbsp;` \(.+\)` (also starting with a space. If you don't know what regular exressions are, Google it. It's a useful thing to know for data cleanup).
