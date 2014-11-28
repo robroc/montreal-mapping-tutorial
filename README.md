@@ -68,7 +68,7 @@ You should have 21 rows of data after filtering.
 
 ## 4. Find the highest job number in each area
 
-Copy your selected data and paste it into a new worksheet.
+Copy your filtered data and paste it into a new worksheet.
 
 Name a new row on Column A “Highest industry”. In Column B, write in this formula:
 
