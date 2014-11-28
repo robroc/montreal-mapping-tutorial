@@ -56,11 +56,11 @@ Whenever manipulating any kind of data, always keep a copy of your original. Cop
 
 We just want the numbers for the top-most level of industry classification, those that start with two digits or a range of two-digit numbers, like 11, 21, 31-33, etc.
 
-Select the top left cell. On your toolbar, click the little funnel button. That's your filter. It will add a little drop-down menu on your column headers.
+Select the top left cell (A1). Give it a label, like "Industry". On your toolbar, click the little funnel button. That's your filter. There might be a sub-menu to get to it. It will add a little drop-down menu on your column headers.
 
 Click `Select all` or `Clear` to unselect everything. Now go down the list and check off the values you want. That is, all values that start with two numbers.
 
-You should have 18 rows of data after filtering.
+You should have 21 rows of data after filtering.
 
 ## 4. Find the highest job number in each area
 
@@ -68,15 +68,15 @@ Copy your selected data and paste it into a new worksheet.
 
 Name a new row on Column A “Highest industry”. In Column B, write in this formula:
 
-**=INDEX($A$2:B18,MATCH(MAX(B2:B18),B2:B18,0),1)**
+**=INDEX($A$2:B21,MATCH(MAX(B2:B21),B2:B21,0),1)**
 
 That's a big formula, so let's break it down, from innermost to outermost:
 
-**MAX(B2:B18)**  - this will find the highest number in column B.
+**MAX(B2:B21)**  - this will find the highest number in column B.
 
-MATCH(**MAX(B2:B18)**,B2:B18,0)   -  This returns the row number of the max value of Column B.
+MATCH(**MAX(B2:B21)**,B2:B21,0)   -  This returns the row number of the max value of Column B.
 
-**INDEX($A$2:B18,** MATCH(__MAX(B2:B18)__, B2:B18,0)**,1)**  - This returns the value in the first column that's on the same row as the max value in column B. That's the industry that has the highest number of jobs.
+**INDEX($A$2:B21,** MATCH(__MAX(B2:B21)__, B2:B21,0)**,1)**  - This returns the value in the first column that's on the same row as the max value in column B. That's the industry that has the highest number of jobs.
 Click on the little black box on the bottom right and drag it across your 32 columns. It will copy the formula across.
 
 The dollar signs ($) in $A$2 makes that cell reference fixed. That is, when you copy the formula over to other cells, that part of the formula will stay on A2. Which is what you want in this case. That column has the values you need.
@@ -86,23 +86,27 @@ The dollar signs ($) in $A$2 makes that cell reference fixed. That is, when you 
 Again, copy your data to a new sheet.
 
 Let's get rid of those number codes. They're useless to us now. We want to just keep all the text after the space following the numbers.
+
 Right click on the column B label (the letter B) and choose `Insert`. It will add a blank column. Write in this formula on B2:
 
-**=MID(A2, FIND(“ “,A2)+1, LEN(A2))**
+**=MID(A2, FIND(" ",A2)+1, LEN(A2))**
 
 Again, let`s break this down:
 
-FIND(“ “,A2)  - this will return the position of the first space in A2. If the text in A2 is “11 Farms”, it will return 3.
+FIND(" ",A2)  - this will return the position of the first space in A2. If the text in A2 is “11 Farms”, it will return 3.
 
-=MID(A2, FIND(“ “,A2)+1  …   -  this will start copying the text in A2 starting at the first space. But we don't want that space. The +1 makes sure we don't capture it. That is, we want to start at one position after the space. Using the example above, this would make it 4.
+=MID(A2, FIND(" ",A2)+1  …   -  this will start copying the text in A2 starting at the first space. But we don't want that space. The +1 makes sure we don't capture it. That is, we want to start at one position after the space. Using the example above, this would make it 4.
 
-=MID(A2, FIND(“ “,A2)+1, LEN(A2))  - The LEN function makes sure we copy everything until the end, no matter how long the text is.
+=MID(A2, FIND(" ",A2)+1, LEN(A2))  - The LEN function makes sure we copy everything until the end, no matter how long the text is.
 
 Copy that formula down the column (remember the little black box on the bottom right?). You should have the values in Column A without the number codes. Copy that column you just populated. Select A1, right-click and choose `Paste Special` and `Values only`. This ensures you only paste the values of the cells and not the formulas you wrote.
 Notice how the industry names on the bottom row also changed to the cleaner version.
 
 Now let's get rid of the (ville) and (arrondissement) qualifiers next to each region name in the top row. Select all of Row 1 and bring up the `Find` dialog. It's in the Edit menu or Ctrl-F (Command-F on Mac).
-Choose the `Find and replace` option. In the `Find` box, type in “ (*)”. This means: find a space, an open parenthesis, anything that follows it until a close parenthesis. In the `Replace` box, put nothing. Choose `Replace all`. All clean.
+
+Choose the `Find and replace` option. In the `Find` box, type in ` (*)`. This means: find a space, an open parenthesis, anything that follows it until a close parenthesis. In Google Spreadsheet, you might need to use this regular expression: ` \(.+\)` (if you don't know what regular exressions are, Google it. It's a useful thing to know for data cleanup).
+
+In the `Replace` box, put nothing. Choose `Replace all`. All clean.
 
 ## 6. Prepare the data for mapping
 
