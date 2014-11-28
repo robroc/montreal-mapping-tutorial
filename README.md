@@ -111,7 +111,7 @@ Notice how the industry names on the bottom row also changed to the cleaner vers
 
 Now let's get rid of the (ville) and (arrondissement) qualifiers next to each region name in the top row. Select all of Row 1 and bring up the `Find` dialog. It's in the Edit menu or Ctrl-F (Command-F on Mac).
 
-Choose the `Find and replace` option. In the `Find` box, type in `  (*)` (Make sure you add a space before). This means: find a space, an open parenthesis, anything that follows it until a close parenthesis. In Google Spreadsheet, you might need to use this regular expression: `  \(.+\)` (also starting with a space. If you don't know what regular exressions are, Google it. It's a useful thing to know for data cleanup).
+Choose the `Find and replace` option. In the `Find` box, type in:  &nbsp;` (*)` (Make sure you add a space before). This means: find a space, an open parenthesis, anything that follows it until a close parenthesis. In Google Spreadsheet, you might need to use this regular expression:  &nbsp;` \(.+\)` (also starting with a space. If you don't know what regular exressions are, Google it. It's a useful thing to know for data cleanup).
 
 ![img](https://raw.githubusercontent.com/robroc/montreal-mapping-tutorial/master/img/replace.jpg)
 
